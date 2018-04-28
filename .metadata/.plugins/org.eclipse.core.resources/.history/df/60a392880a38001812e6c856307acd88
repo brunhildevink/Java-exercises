@@ -1,0 +1,42 @@
+package week5.Practicum_4;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Klas implements Serializable {
+	private String klasCode;
+	private Leerling leerling;
+	private ArrayList<Leerling> leerlingen = new ArrayList<Leerling>();
+
+	public Klas(String kC) {
+		this.klasCode = kC;
+	}
+
+	public void voegLeerlingToe(Leerling l) {
+		leerlingen.add(l);
+	}
+
+	public void wijzigCijfer(String nm, double nweCijfer) {
+		for(Leerling l : leerlingen) {
+			if(l.getNaam().equals(nm)) {
+				l.setCijfer(nweCijfer);
+			}
+		}
+	}
+
+	public ArrayList<Leerling> getLeerlingen() {
+		return leerlingen;
+	}
+	
+	public int aantalLeerlingen() {
+		return leerlingen.size();
+	}
+	
+	public String toString() {
+		String leerlingenCijferLijst = "\n";
+		for(Leerling l : leerlingen) {
+			leerlingenCijferLijst += l + "\n";
+		}
+		return "In klas " + this.klasCode + " zitten de volgende leerlingen: " + leerlingenCijferLijst;
+	}
+}

@@ -1,0 +1,8 @@
+package Backend;
+
+public interface Presentie {
+	
+	public meldZiek();
+	public meldBeter();
+
+}

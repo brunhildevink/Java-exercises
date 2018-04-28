@@ -1,0 +1,105 @@
+package week4.Practicum_2;
+
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+import javafx.application.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+import week4.Practicum_2.KamerType;
+import javafx.collections.*;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+
+
+public class BoekingenApp extends Application implements EventHandler<ActionEvent>{
+	
+	private Hotel hotel = new Hotel("Avondrust");
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		FlowPane root = new FlowPane();
+		root.setPadding(new Insets(10, 10 ,10, 10));
+		root.setVgap(10);
+		root.setHgap(10);
+		
+		Label invoerlabel = new Label("Voer uw gegevens in");
+		Label naamlabel = new Label("Naam:");
+		Label adreslabel = new Label("Adres:");
+		Label aankomstlabel = new Label("Aankomstdatum:");
+		Label vertreklabel = new Label("Vertrekdatum:");
+		Label kamerlabel = new Label("Kamertype:");
+		
+		TextField naamfield = new TextField();
+		TextField adresfield = new TextField();
+		
+		DatePicker aankomstfield = new DatePicker();
+		aankomstfield.setValue(LocalDate.now());
+		DatePicker vertrekfield = new DatePicker();
+		vertrekfield.setValue(LocalDate.now().plus(1, ChronoUnit.DAYS));
+
+		KamerType k1 = new KamerType("Deluxe", 2, 85.0);
+		KamerType k2 = new KamerType("Standaard", 2, 60.0);
+		KamerType k3 = new KamerType("Low budget", 2, 25.0);
+		
+		Button boek = new Button();
+		boek.setText("Boek");
+		boek.setOnAction(this);
+		
+		Button reset = new Button();
+		reset.setText("Reset");
+		reset.setOnAction(this);
+		
+		boek.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        Label boekingVoltooid = new Label("Boeking voltooid");
+		        System.out.println("Boeking voltooid");
+		    }
+		});
+		
+		ObservableList<String> kamerlijst = 
+			    FXCollections.observableArrayList(k1.toString(), k2.toString(), k3.toString());
+		ComboBox kamerfield = new ComboBox(kamerlijst);
+		
+		invoerlabel.setPrefWidth(350);
+		naamlabel.setPrefWidth(105);
+		adreslabel.setPrefWidth(105);
+		aankomstlabel.setPrefWidth(105);
+		vertreklabel.setPrefWidth(105);
+		kamerlabel.setPrefWidth(105);
+		boek.setPrefWidth(105);
+		reset.setPrefWidth(105);
+		
+		naamfield.setPrefWidth(245);
+		adresfield.setPrefWidth(245);
+		
+		aankomstfield.setPrefWidth(245);
+		vertrekfield.setPrefWidth(245);
+		
+		kamerfield.setPrefWidth(245);
+		
+		root.getChildren().addAll(
+			invoerlabel, 
+			naamlabel, naamfield, 
+			adreslabel, adresfield,
+			aankomstlabel, aankomstfield,
+			vertreklabel, vertrekfield,
+			kamerlabel, kamerfield,
+			reset, boek
+		);
+		
+		Scene scene = new Scene(root, 450, 350);
+		primaryStage.setTitle("Tweepersoonsboekingen");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
+
+}

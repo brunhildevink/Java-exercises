@@ -1,0 +1,11 @@
+package Backend;
+
+import java.util.*;
+
+
+public class School {
+	
+	private ArrayList<String> docenten = new ArrayList<>();
+	
+
+}

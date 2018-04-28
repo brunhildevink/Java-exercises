@@ -1,0 +1,4 @@
+INDEX VERSION 1.130+/Users/brunhildevink/Documents/Java Opdrachten/.metadata/.plugins/org.eclipse.jdt.core
+781850885.index
+2701211134.index
+1828089775.index

@@ -1,0 +1,38 @@
+package week5.Practicum0;
+
+import java.util.*;
+import java.util.Formatter;
+import java.text.NumberFormat;
+
+public class Utils {
+    private int requestCount = 0;
+    private NumberFormat numberFormat;
+
+    public Utils() {
+        numberFormat = NumberFormat.getCurrencyInstance(new Locale("nl", "NL"));
+        numberFormat.setCurrency(Currency.getInstance("EUR"));
+    }
+
+    public Utils(String formaatCode) {
+        numberFormat = NumberFormat.getCurrencyInstance(new Locale("nl", "NL"));
+        numberFormat.setCurrency(Currency.getInstance(formaatCode));
+    }
+
+    public String euroBedrag(double bedrag) {
+        this.requestCount++;
+        return numberFormat.format(bedrag);
+    }
+
+    public String euroBedrag(double bedrag, int precisie) {
+        this.requestCount++;
+        Formatter fmt = new Formatter();
+
+        fmt.format("%1." + precisie + "f", bedrag);
+        return "€ " + fmt;
+
+    }
+
+    public int getRequestCount() {
+        return this.requestCount;
+    }
+}

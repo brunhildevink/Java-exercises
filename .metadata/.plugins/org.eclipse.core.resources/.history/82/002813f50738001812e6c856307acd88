@@ -1,0 +1,42 @@
+package week5.Practicum_0;
+
+import java.util.*;
+import java.util.Formatter;
+import java.text.NumberFormat;
+
+public class Utils {
+    private int requestCount = 0;
+    private NumberFormat numberFormat;
+
+    public Utils() {
+        numberFormat = NumberFormat.getCurrencyInstance(new Locale("nl", "NL"));
+        numberFormat.setCurrency(Currency.getInstance("EUR"));
+    }
+
+    public Utils(String formaatCode) {
+        numberFormat = NumberFormat.getCurrencyInstance(new Locale("nl", "NL"));
+        numberFormat.setCurrency(Currency.getInstance(formaatCode));
+    }
+
+    // Ophalen van de counter
+    public int getRequestCount() {
+        return this.requestCount;
+    }
+    
+    //Ophalen bedrag
+    public String bedrag(double bedrag) {
+        this.requestCount++;
+        return numberFormat.format(bedrag);
+    }
+
+    public String bedrag(double bedrag, int precisie) {
+        this.requestCount++;
+        Formatter format = new Formatter();
+
+        format.format("%1." + precisie + "f", bedrag);
+        return "€ " + format;
+
+    }
+    
+
+}
